@@ -1,11 +1,11 @@
-#!/usr/bin/python2.7
+#!/usr/bin/env python
 
 '''
 use this file directly, or just set PYTHONPATH to your virtualenv directory
 and run system wide python instance
 '''
 
-import os, sys, runpy
+import os, sys
 from os.path import join, dirname, pardir, abspath
 
 
