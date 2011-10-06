@@ -29,9 +29,22 @@ def inject_pythonpath():
     pypath.insert(0, thispath)
     os.environ['PYTHONPATH'] = os.path.pathsep.join(pypath)
 
+def win_quote_argv(argv):
+    '''
+    Windows platform needs add quotes around arguments with spaces
+    '''
+    def q(arg):
+        if ' ' in arg:
+            return '"%s"' % arg
+        else:
+            return arg
+    return map(q, argv)
+
 def main(argv=None):
     if argv is None:
         argv = sys.argv
+    if sys.platform == 'win32':
+        argv = win_quote_argv(argv)
     inject_pythonpath()
     os.execvp(sys.executable, argv)
 
